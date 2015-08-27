@@ -6166,22 +6166,5 @@ a.badge:focus {
   position: fixed;
 }
 
-/* Additional Code */
-.parent {
-    padding: 20px 15px;
-}
 
-.one, .two {
-    border: 2px solid black;
-    height: 218px;
-    width: 145px;
-    float: left;
-}
-
-.one {
-    margin-right: 60px;
-}
-
-.floatClear {
-    clear: both;
 }
