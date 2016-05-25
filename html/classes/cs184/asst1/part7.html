@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+    <h2 align="middle">Hugh Chen - cs184-en</h2>
+
+    <div class="padded">
+
+    <h2 align="middle">Part 7: Level sampling with mipmaps for texture mapping</h2>
+
+        <p>For this part, we had to implement level sampling.  This was basically a matter of passing in the barycentric coordinates of (x+1,y) and (x,y+1) into the color function, and then finding the uv coordinates of these guys in order to compute du/dx, dv/dx, du/dy, and dv/dy.  Then we calculate the level according to the equation on the lecture slides. For the bilinear level case we simply use the levels adjacent to the float D we calculated to perform linear interpolation on the resulting samples.  Using nearest and bilinear sampling and zero and nearest levels, I've shown a few examples for texmap using a png of a forest I found online.  In this case there should be minification.  
+        </p>
+
+        <div align="middle">
+            <img src="images/part7/texmap8-0.png" width="800px" />
+            <figcaption align="middle">Part 7: Nearest sampling with level zero - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap8-1.png" width="800px" />
+            <figcaption align="middle">Part 7: Nearest sampling with nearest level - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap8-2.png" width="800px" />
+            <figcaption align="middle">Part 7: Bilinear sampling with level zero - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap8-3.png" width="800px" />
+            <figcaption align="middle">Part 7: Bilinear sampling with nearest level - <b>Deliverable.</b></figcaption>
+        </div>
+
+        <p>It's a bit hard to see, but for both sampling techniques, using the nearest level mipmap helps with the aliasing in the grass.  This is because the grass originally had some random pieces of wood and other debris in it.  When we minified, we created aliasing because we won't get all pixels of the debris in the rasterized image.  Using the nearest level helps to blur this debris out.
+        </p>
+
+        <p>In order to better illustrate the effects of the levels:
+        </p>
+
+        <div align="middle">
+            <img src="images/part7/texmap1-0.png" width="400px" />
+            <figcaption align="middle">Part 7: Nearest sampling with level zero.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap1-1.png" width="400px" />
+            <figcaption align="middle">Part 7: Nearest sampling with nearest level.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap1-2.png" width="400px" />
+            <figcaption align="middle">Part 7: Nearest sampling with bilinear level.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap1-3.png" width="400px" />
+            <figcaption align="middle">Part 7: Bilinear sampling with level zero.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap1-4.png" width="400px" />
+            <figcaption align="middle">Part 7: Bilinear sampling with nearest level.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part7/texmap1-5.png" width="400px" />
+            <figcaption align="middle">Part 7: Bilinear sampling with bilinear level.</figcaption>
+        </div>
+<h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+
+</div>
+</body>
+</html>
+
+
+
+

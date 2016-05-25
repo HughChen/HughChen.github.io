@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+    <h2 align="middle">Hugh Chen - cs184-en</h2>
+
+    <div class="padded">
+
+    <h2 align="middle">Part 3: Antialiasing triangles</h2>
+
+        <p>In this part, we implemented antialiasing.  <b>Deliverable</b> - Additional structs and functions:
+        </p>
+        <xmp>
+            std::vector<unsigned char> superbuffer;
+            void rasterize_point_super( float x, float y, Color color );
+        </xmp>
+        <p>In order for antialiasing to work, we essentially ignore the framebuffer and use the supersample buffer with properly scaled up variables (vertices, indices, etc.).  Then, we need to change the rasterize_point function, because it's expected behavior is to rasterize a point in the framebuffer.  To make sure it keeps its behavior in the face of the downsampling, we simply set every superbuffer pixel that corresponds to the original framebuffer pixel to the value of the new point.  Then, rasterize_point_super is the same as the previous rasterize_point function except it rasterizes in the superbuffer rather than the framebuffer.  And the rasterize_triangle function calls rasterize_point_super over rasterize_point with it's scaled up variables.  Finally, we modify the resolve function to average the superbuffer back down into the framebuffer.  The result is as such:
+        </p>
+        <div align="middle">
+            <img src="images/part3/test4-0.png" width="400px" />
+            <figcaption align="middle">Part 3: Sample rate 1 - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part3/test4-1.png" width="400px" />
+            <figcaption align="middle">Part 3: Sample rate 4 - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part3/test4-2.png" width="400px" />
+            <figcaption align="middle">Part 3: Sample rate 16 - <b>Deliverable.</b></figcaption>
+        </div>
+        
+    <h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+
+
+</div>
+</body>
+</html>
+
+
+
+

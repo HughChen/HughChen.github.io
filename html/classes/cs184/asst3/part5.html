@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle"><a href="index.html">Assignment 3: PathTracer</a></h1>
+    <h2 align="middle">Hugh Chen - cs184-en</h2>
+
+    <div class="padded">
+
+    <h2 align="middle">Part 5: Materials</h2>
+        <p>In part 5, we implement mirror and glass bsdfs.  <b>Deliverable - Walk through your implementation of the BSDFs and helper functions.</b>  First, we implemented two helper functions: <code>reflect</code> and <code>refract</code>.</p>
+        <p><code>void BSDF::reflect(const Vector3D& wo, Vector3D* wi)</code> helper function quite simply calculates the reflection:</p>
+
+        <xmp>
+            Vector3D n = Vector3D(0.0, 0.0, 1.0);
+            *wi = (2 * dot(wo, n) * n) - wo;
+        </xmp>
+
+        <p><code>bool BSDF::refract(const Vector3D& wo, Vector3D* wi, float ior)</code> helper function implements the vector form of Snell's law <a href="https://en.wikipedia.org/wiki/Snell%27s_law#Vector_form">here</a> and stores it into our wi.</p>
+
+        <p>Then we implement the <code>sample_f</code> functions for mirror and for glass.  The mirror bsdf is essentially just an impulse in the direction of the reflection.  The glass bsdf is an implementation of the algorithm in the specs.  In the case that there is total internal reflection, we basically become a mirror.  In the case that there is not, we sample a bernoulli based off of <a href="https://en.wikipedia.org/wiki/Schlick's_approximation">Schlick's approximation</a> and either return a scaled mirror estimate or a scaled refracted estimate.</p>
+
+        <p><b>Deliverable - Show images of the dae/sky/CBspheres.dae scene rendered in high accuracy at various maximum ray depths. Point out the various specular effects (reflections, refractions, and caustics) that appear as depth increases. Include a "fully converged" image with max ray depth set to 100.</b></p>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_0.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 0 max ray depth.</figcaption>
+            <figcaption align="middle">Here we only have direct lighting.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_1.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 1 max ray depth.</figcaption>
+            <figcaption align="middle">Reflection has appeared, and the light is currently inside the ball.</figcaption>
+        </div>
+
+        <p></p>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_2.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 2 max ray depth.</figcaption>
+            <figcaption align="middle">The light is being refracted onto the surface of the glass ball.  Note that it hasn't reached the mirror ball yet.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_3.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 3 max ray depth.</figcaption>
+            <figcaption align="middle">The glass ball's caustic appears.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_4.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 4 max ray depth.</figcaption>
+            <figcaption align="middle">The caustic is reflected onto the wall.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_5.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 5 max ray depth.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_4_100.png" width="400px" />
+            <figcaption align="middle">CBspheres screenshot.  1024 camera rays per pixel, 4 samples per light area, 100 max ray depth.</figcaption>
+        </div>
+
+        <p><b>Deliverable - Show a sequence of images with increasing samples per pixel, including at least the images with 1, 4, 16, 64, and 1024 samples per pixel. Use one sample per light and 100 for max ray depth.</b>  I accidentally rendered them at a different resolution, but I didn't want to re-render them all...</p>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1_1_100.png" width="400px" />
+            <figcaption align="middle">Direct CBspheres screenshot.  1 camera rays per pixel, 1 samples per light area, 100 max ray depth.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_4_1_100.png" width="400px" />
+            <figcaption align="middle">Direct CBspheres screenshot.  4 camera rays per pixel, 1 samples per light area, 100 max ray depth.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_16_1_100.png" width="400px" />
+            <figcaption align="middle">Direct CBspheres screenshot.  16 camera rays per pixel, 1 samples per light area, 100 max ray depth.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_64_1_100.png" width="400px" />
+            <figcaption align="middle">Direct CBspheres screenshot.  64 camera rays per pixel, 1 samples per light area, 100 max ray depth.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part5/spheres_1024_1_100.png" width="400px" />
+            <figcaption align="middle">Direct CBspheres screenshot.  1024 camera rays per pixel, 1 samples per light area, 100 max ray depth.</figcaption>
+        </div>
+
+
+
+    <h1 align="middle"><a href="index.html">Assignment 3: PathTracer</a></h1>
+
+</div>
+</body>
+</html>
+
+
+
+

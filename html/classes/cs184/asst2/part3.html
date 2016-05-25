@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle"><a href="index.html">Assignment 2: Rasterizester</a></h1>
+    <h2 align="middle">Hugh Chen - cs184-en</h2>
+
+    <div class="padded">
+
+    <h2 align="middle">Part 3: Edge flip</h2>
+        <p>In part 3, we make use of the half edge mesh data structures to flip an edge shared by two triangles.  This operation is one of the basic operations when it comes to local mesh editing.</p>
+        <div align="middle">
+            <img src="images/part3/flip.jpg" width="400px" />
+            <figcaption align="middle">Visualization of edge flip.  Image taken from <a href="http://cs184.eecs.berkeley.edu/cs184_sp16_content/article_images/6_1.jpg">here</a>.</figcaption>
+        </div>
+
+        <p>My first attempt at implementation misunderstood the face that the <code>vertex</code> field in the <code>halfedge</code> class is actually the vertex the edge originates from, not the vertex the edge points to.  Somehow I missed this in lecture and discussion, and the specs weren't clear on this point.  The resulting image was when that was broken:</p>
+
+        <div align="middle">
+            <img src="images/part3/flip_disappear.png" width="400px" />
+            <figcaption align="middle">Broken edge flip.  Caused the faces to vanish...</figcaption>
+        </div>
+
+        <p>After making a fix, these were some of the resulting images:</p>
+
+        <div align="middle">
+            <img src="images/part3/preflip.png" width="400px" />
+            <figcaption align="middle">Before flipping.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part3/postflip.png" width="400px" />
+            <figcaption align="middle">After flipping.  <b>Deliverable</b>.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part3/mesh.png" width="400px" />
+            <figcaption align="middle">Mesh with one flip.</figcaption>
+        </div>
+
+        <div align="middle">
+            <img src="images/part3/nomesh.png" width="400px" />
+            <figcaption align="middle">No mesh with one flip.</figcaption>
+        </div>
+
+    <h1 align="middle"><a href="index.html">Assignment 2: Rasterizester</a></h1>
+
+</div>
+</body>
+</html>

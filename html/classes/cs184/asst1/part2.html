@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+    <h2 align="middle">Hugh Chen - cs184-en</h2>
+
+    <div class="padded">
+
+    <h2 align="middle">Part 2: Rasterizing single-color triangles</h2>
+
+        <p>In this part we had to rasterize triangles.  I implemented a naive and straightforward approach to rasterize the triangles.  I traverse a bounding box and have a function that checks whether a point is inside of the triangle's vertices.  The first bug I ran into was that I didn't add an initial .5 my coordinates for the bounding box.  Here are the before and after images:</p>
+        <div align="middle">
+            <img src="images/part2/test3-0.png" width="400px" />
+            <figcaption align="middle">Part 2: Flawed dragon.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part2/test3-1.png" width="400px" />
+            <figcaption align="middle">Part 2: Fixed dragon.</figcaption>
+        </div>
+        <p>The next problem was illustrated by test six.  The test for finding whether a point is inside a triangle that we discussed in lecture checks whether all the resulting dot products are all greater than zero.  This hinges on the assumption that the vertices are passed in with a particular ordering (I believe counterclockwise).  Otherwise all the resulting dot products will all be less than zero if the point is inside the triangle.  In order to fix this I simply check to see if the signs on all three sides match, because this can only ever occur when a point is inside a triangle, regardless of the ordering of the vertices.
+        </p>
+        <div align="middle">
+            <img src="images/part2/test6-0.png" width="400px" />
+            <figcaption align="middle">Part 2: Flawed flowers.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part2/test6-1.png" width="400px" />
+            <figcaption align="middle">Part 2: Fixed flowers.</figcaption>
+        </div>
+        After finishing all of this, basic triangle rasterization is complete.
+        <div align="middle">
+            <img src="images/part2/test4-0.png" width="400px" />
+            <figcaption align="middle">Part 2: <b>Deliverable.</b></figcaption>
+        </div>
+    <h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+
+</div>
+</body>
+</html>
+
+
+
+
