@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+    <h2 align="middle">Hugh Chen - cs184-en</h2>
+
+    <div class="padded">
+
+    <h2 align="middle">Part 6: Pixel sampling for texture mapping</h2>
+
+        <p>In this part we make use of the barycentric coordinates to perform texture mapping.  We use the texture triangle's coordinates in the uv space to create a bijective mapping for each barycentric coordinate point we attempt to rasterize by sampling from a texture for the appropriate color.  There are two sampling techniques that we use: nearest and bilinear.  Nearest sampling simply chooses the closest pixel in the texture to the uv coordinate we mapped to.  Bilinear uses the four nearest pixels to perform two rounds of linear interpolation.  The result is a bit of an averaging effect with the nearby pixels, with a focus on the closer pixels.
+        </p>
+        <p>At times there will be a difference between the two techniques:
+        </p>
+        <div align="middle">
+            <img src="images/part6/texmap1-0.png" width="400px" />
+            <figcaption align="middle">Part 6: Nearest sampling with sample rate 1 - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part6/texmap1-1.png" width="400px" />
+            <figcaption align="middle">Part 6: Bilinear sampling with sample rate 1 - <b>Deliverable.</b></figcaption>
+        </div>
+        <p>In this case, we have a well defined difference, because nearest sampling will simply choose the closest pixel.  Since there is a bit of warping it appears that the sampler misses certain texels (such as the one creating the lines) and causes a bit of discontinuities in the image.  Performing bilinear sampling serves to ameliorate these effects and makes the resulting image look much smoother.  The biggest difference between these two functions will likely be in the case of magnification.  This is because magnification will cause pixels to be dropped and cause the sharp discontinuities that we are witnessing now.
+        </p>
+        <p>At times there will be little difference between the two techniques:
+        </p>
+        <div align="middle">
+            <img src="images/part6/texmap1-2.png" width="400px" />
+            <figcaption align="middle">Part 6: Nearest sampling with sample rate 16 - <b>Deliverable.</b></figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part6/texmap1-3.png" width="400px" />
+            <figcaption align="middle">Part 6: Bilinear sampling with sample rate 16 - <b>Deliverable.</b></figcaption>
+        </div>
+        <p>In this case, since we supersample, we end up with a similar image in both cases.  Since we supersample with a sample rate of 16, the small amount of averaging from the interpolation on the texture performed by the bilinear sampling makes little difference in the face of the supersample averaging on these already averaged values.
+        </p>
+        <div align="middle">
+            <img src="images/part6/texmap6-0.png" width="400px" />
+            <figcaption align="middle">Part 6: Nearest sampling with sample rate 1.</figcaption>
+        </div>
+        <div align="middle">
+            <img src="images/part6/texmap6-1.png" width="400px" />
+            <figcaption align="middle">Part 6: Bilinear sampling with sample rate 1.</figcaption>
+        </div>
+        <p>In this final case there is very little difference between the two sampling techniques.  This is likely because there is minification, so the image is already being downsampled, so introducing bilinear interpolation on the texture end makes little difference.</p>
+<h1 align="middle"><a href="index.html">Assignment 1: Rasterizester</a></h1>
+
+</div>
+</body>
+</html>
+
+
+
+

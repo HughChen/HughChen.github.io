@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>  
+    div.padded {  
+      padding-top: 0px;  
+      padding-right: 100px;  
+      padding-bottom: 0.25in;  
+      padding-left: 100px;  
+    }  
+  </style> 
+<title>Hugh Chen  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle">Final Project: Final Report</h1>
+    <h2 align="middle">Hugh Chen</h2>
+    <div class="padded">
+
+    <h2 align="middle">Abstract</h2>
+    <p>For this project, I implemented three algorithms.  Two for mesh simplification and one for mesh regularization.</p>
+
+    <p>The first two algorithms addressed mesh simplification.  Mesh simplification is an important problem because the level of detail required for applications in computer graphics can vary greatly.  In order to control computation time it is important to be able to upsample as well as downsample our meshes.  The first algorithm uses quadric error metrics based off the surfaces of the mesh to determine which edges to contract.  The main reference for this is <a href="http://www.cs.cmu.edu/~./garland/Papers/quadrics.pdf">Garland and Heckbert 09</a>.  The second algorithm is much simpler.  It uses edge lengths to determine which edges to contract.  The main reference is <a href="http://www.insight-journal.org/browse/publication/298">Gelas, Gouaillard, and Megason 2008</a></p>
+
+    <p>The third algorithm addressed mesh regularization.  Mesh regularization is an important problem because the shapes and sizes of particular elements influences interpolations, simulation, shape approximation, and more (<a href="http://www.cs.berkeley.edu/~jrs/papers/elem.pdf">Shewchuck</a>).  A few simplistic heuristics of "good" triangle meshes are consistent triangle shapes, adhering to delaunay conditions, and regular vertex degrees.  In order to conform to these heuristics, we can performa an isotropic remeshing algorithm detailed in <a href="http://graphics.uni-bielefeld.de/publications/sgp04.pdf">Botsch and Kobbelt 04</a>.</p>
+
+    <h2 align="middle">Technical Approach</h2>
+
+    <h4 align="middle">Edge Collapse</h4>
+
+    <p>In implementing mesh simplification and regularization, the first step is to write the <code>edge_collapse</code>, <code>edge_split</code>, and <code>edge_flip</code> functions.  Since <code>edge_split</code> and <code>edge_flip</code> were both part of homework two, I only discuss <code>edge_collapse</code> here.</p>
+
+    <p>Implementing edge collapse for the halfedge mesh data structure was primarily a matter of reassigning pointers to achieve the following local change:</p>
+
+    <div align="middle">
+      <img src="edge_collapse.png" width="600px" />
+    </div>
+
+    <p>There were two methods to accomplish this: creating a new vertex <code>v_m</code> or reassigning one of the prexisting to be <code>v_m</code>.  In order to minimize the amount of pointer I would have to reassign, I chose to do the latter.  I reassigned the remaining vertices keeping in mind that I would ultimately delete the following vertices, edges, faces, and halfedges:</p>
+
+    <div align="middle">
+      <img src="deleted_elements.png" width="400px" />
+    </div>
+
+    <p>This means that <code>v_c</code> becomes our new <code>v_m</code> and the half edge pointing from c to a <code>he_ca</code> becomes our new <code>he_ma</code>, and so on.  The first step to the reassignments is to reassign all halfedges around <code>v_d</code> to <code>v_c</code>.  Since there could be an arbitrary number of halfedges, it requires iterating around <code>v_d</code> and reassigning the appropriate halfedges.  The seconds step is to simply reassign <code>v_m</code>, <code>v_a</code>, and <code>v_b</code> as well as <code>he_ma</code>, <code>he_am</code>, <code>he_mb</code>, and <code>he_bm</code> accordingly.</p>
+
+    <p>Apart from special cases for the boundaries (in this project I just ignore them), the final note of caution is to ensure that we keed the mesh manifold.  The images for the following two issues were taken from <a href="http://stackoverflow.com/questions/27049163/mesh-simplification-edge-collapse-conditions">here</a></p>
+
+    <p>The first issue is <b>connectivity</b>.  In order to ensure that the mesh is manifold after collapsing, we only want to merge one pair of edges per side of our original edge.   In order to ensure this, I implemented a check by doing BFS with a depth of two from one endpoint of our original edge to the other, making sure that there were exactly two paths of length two between the endpoints.</p>
+
+    <div align="middle">
+      <img src="connectivity.png" width="400px" />
+      <figcaption align="middle">Here we collapse the red edge.  One on side of our original edge we see both blue and orange pairs of edges.</figcaption>
+    </div>
+
+    <p>The second issue is <b>geometry</b>.  In order to ensure that our mesh is still manifold we want to ensure that we don't flip any triangles.  In order to guarantee this, we check around both endpoints of our original edge to ensure that the new triangles formed with <code>v_m</code> are all valid.  This is accomplished by iterating around the endpoints to confirm that the dot product of the normals before and after is positive.</p>
+
+    <div align="middle">
+      <img src="geometry.png" width="400px" />
+      <figcaption align="middle">Here we collapse the red edge.  The green triangle ends up being flipped.</figcaption>
+    </div>
+
+    <h4 align="middle">Simplification using quadric errors.</h4>
+
+    <p>For this part, I primarily used the CMU specs <a href="http://462cmu.github.io/asst2_meshedit/">here</a>.</p>
+
+    <p>Essentially we compute quadric matrices <code>K</code> for all faces which allow us to calculate the distance from given planes that look like:</p>
+
+    <pre><code>
+    a^2   ab    ac   ad
+    ab    b^2   bc   bd
+    ac    bc    c^2  cd
+    ad    bd    cd   d^2
+    </code></pre>
+
+    <p>Here <code>N=(a,b,c)</code> is the normal vector of the plane and <code>d=-N•p</code>, where <code>p</code> is a point on the plane.  In this way we can find the squared distances to the given planes by multiplying with our point in homogenous coordinates on either side of the matrix.  Then in order to obtain estimates for the quadric matrices for each vertex, we simply add up all of the adjacent faces' matrices.  Then we can estimate quadric matrices for edges by adding the matrices at each endpoint.  In order to figure out the optimal point to collapse we solve the linear system: <code>Ax=b</code>, where the entries of A are just</p>
+
+    <pre><code>
+    a^2   ab    ac 
+    ab    b^2   bc
+    ac    bc    c^2
+    </code></pre>
+
+    <p>and the entries of b are</p>
+
+    <pre><code>
+    -ad
+    -bd
+    -cd
+    </code></pre>
+
+    <p>Then, the estimated cost of collapsing an edge is <code>x^T K x</code>.</p>
+
+    <p>Now that we understand how to find the cost of edges, we simply create a priority queue with all the edges sorted by their optimal collapse cost, and we collapse until we have a quarter of the number of edges we had prior, all the while reassigning the vertices to be at their optimal points.</p>
+
+    <h4 align="middle">Simplification using edge length.</h4>
+
+    <p>This simplification is very easy.  It is similar to the previous simplification method, except we simply collapse according to edge cost, with our optimal point being the midpoint of the edges.  The performance of this algorithm is fairly strong, although it doesn't preserve the shape of the mesh nearly as well as the quadric error metric method does.</p>
+
+    <h4 align="middle">Regularization</h4>
+
+    <p>For the mesh regularization, we simply implement the following:</p>
+
+    <ol>
+    <li>Compute the mean edge length L of the input.</li>
+    <li>Split all edges that are longer than 4L/3.</li>
+    <li>Collapse all edges that are shorter than 4L/5.</li>
+    <li>Flip all edges that decrease the total deviation from degree 6.</li>
+    <li>Compute the centroids for all the vertices.</li>
+    <li>Move each vertex in the tangent direction toward its centroid.</li>
+    </ol>
+
+    <p>The only thing to be cautious of is that edge collapse deletes the edge input as well as a couple other edges.  In order to make certain the edge iterator doesn't throw errors, we make sure to increment the iterator if we encounter any of the deleted edges.</p>
+
+    <h4 align="middle">Lessons Learned</h4>
+
+    <ul>
+    <li>Keep your mesh manifold.</li>
+    <li>Downsampling preserves shape well (with quadric error metrics).</li>
+    <li>Be cautious of how you iterate through the edges.</li>
+    </ul>
+
+    <h2 align="middle">Results</h2>
+
+    <h4 align="middle">Simplification using quadric errors.</h4>
+
+    <div align="middle">
+      <div style="float:left; width:100 px">
+        <img src="simp1/cow1.png" width="350px" />
+        <figcaption align="middle">Cow screenshot - no downsampling.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp1/cow2.png" width="350px" />
+        <figcaption align="middle">Cow screenshot - downsampled once.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp1/cow3.png" width="350px" />
+        <figcaption align="middle">Cow screenshot - downsampled twice.</figcaption>
+      </div>
+
+      <div style="clear:both"></div>
+    </div>
+
+    <div align="middle">
+      <div style="float:left; width:100 px">
+        <img src="simp1/teapot1.png" width="350px" />
+        <figcaption align="middle">Teapot screenshot - no downsampling.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp1/teapot2.png" width="350px" />
+        <figcaption align="middle">Teapot screenshot - downsampled once.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp1/teapot3.png" width="350px" />
+        <figcaption align="middle">Teapot screenshot - downsampled twice.</figcaption>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <h4 align="middle">Simplification using edge length.</h4>
+
+    <div align="middle">
+      <div style="float:left; width:100 px">
+        <img src="simp2/cow1.png" width="350px" />
+        <figcaption align="middle">Cow screenshot - no downsampling.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp2/cow2.png" width="350px" />
+        <figcaption align="middle">Cow screenshot - downsampled once.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp2/cow3.png" width="350px" />
+        <figcaption align="middle">Cow screenshot - downsampled twice.</figcaption>
+      </div>
+
+      <div style="clear:both"></div>
+    </div>
+
+    <div align="middle">
+      <div style="float:left; width:100 px">
+        <img src="simp2/teapot1.png" width="350px" />
+        <figcaption align="middle">Teapot screenshot - no downsampling.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp2/teapot2.png" width="350px" />
+        <figcaption align="middle">Teapot screenshot - downsampled once.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="simp2/teapot3.png" width="350px" />
+        <figcaption align="middle">Teapot screenshot - downsampled twice.</figcaption>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <h4 align="middle">Regularization</h4>
+
+    <div align="middle">
+      <div style="float:left; width:100 px">
+        <img src="remesh/bean1.png" width="450px" />
+        <figcaption align="middle">Bean screenshot - no regularization.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="remesh/bean2.png" width="450px" />
+        <figcaption align="middle">Bean screenshot - regularized.</figcaption>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <div align="middle">
+      <div style="float:left; width:100 px">
+        <img src="remesh/cow1.png" width="450px" />
+        <figcaption align="middle">Cow screenshot - no regularization.</figcaption>
+      </div>
+      <div style="float:left; width:100 px">
+        <img src="remesh/cow2.png" width="450px" />
+        <figcaption align="middle">Cow screenshot - regularized.</figcaption>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+
+    <h2 align="middle">References</h2>
+
+    <ul>
+      <li>Botsch, Mario, and Leif Kobbelt. "A Remeshing Approach to Multiresolution Modeling." Proceedings of the 2004 Eurographics/ACM SIGGRAPH Symposium on Geometry Processing - SGP '04 (2004): 185-92.</li>
+      <li>Garland, Michael, and Paul S. Heckbert. "Surface Simplification Using Quadric Error Metrics." Proceedings of the 24th Annual Conference on Computer Graphics and Interactive Techniques - SIGGRAPH '97 (1997): n. pag.</li>
+      <li>Gelas, Gouaillard, and Megason. “Surface Meshes Incremental Decimation Framework”. In: Insight Journal July-December (2008).</li>
+      <li>The cmu code and <a href="http://462cmu.github.io/asst2_meshedit/">specs</a></li>
+    </ul>
+
+    <h2 align="middle">Contributions from each team member</h2>
+
+    <p>Solo project.</p>
+
+</div>
+</body>
+</html>
+
+
+
+
