@@ -1,0 +1,24 @@
+body {
+    font: normal 14px monospace;
+    width: 370px; 
+    hyphens: auto;
+}
+
+a:link {
+    color: MidnightBlue;
+}
+
+/* visited link */
+a:visited {
+    color: DarkCyan;
+}
+ 
+/* mouse over link */
+a:hover {
+    color: Olive;
+}
+
+/* selected link */
+a:active {
+    color: DarkTurquoise;
+}
