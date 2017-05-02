@@ -5,12 +5,12 @@ body {
 }
 
 a:link {
-    color: MidnightBlue;
+    color: DarkCyan;
 }
 
 /* visited link */
 a:visited {
-    color: DarkCyan;
+    color: MidnightBlue;
 }
  
 /* mouse over link */
