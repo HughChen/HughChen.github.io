@@ -11831,10 +11831,10 @@ div#notebook {
 
 
 
-<div id="38736c83-318f-4f8c-9930-12e7cd014b6e"></div>
+<div id="0a3cdec7-a5b4-46fb-8d41-f65b66933260"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#38736c83-318f-4f8c-9930-12e7cd014b6e');
+var element = $('#0a3cdec7-a5b4-46fb-8d41-f65b66933260');
 $.getScript('https://kmahelona.github.io/ipython_notebook_goodies/ipython_notebook_toc.js')
 </script>
 </div>
@@ -16407,19 +16407,6 @@ Elapsed time:
 
 <div class="prompt"></div>
 
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Process PoolWorker-26:
-Process PoolWorker-23:
-Traceback (most recent call last):
-Process PoolWorker-1:
-Process PoolWorker-50:
-Process PoolWorker-13:
-Process PoolWorker-10:
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -16543,24 +16530,6 @@ Elapsed time:
 
 <div class="prompt"></div>
 
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Process PoolWorker-103:
-Process PoolWorker-116:
-Traceback (most recent call last):
-Traceback (most recent call last):
-Process PoolWorker-121:
-Process PoolWorker-94:
-  File &#34;/usr/lib64/python2.7/multiprocessing/process.py&#34;, line 258, in _bootstrap
-Process PoolWorker-92:
-  File &#34;/usr/lib64/python2.7/multiprocessing/process.py&#34;, line 258, in _bootstrap
-Process PoolWorker-112:
-Process PoolWorker-82:
-Process PoolWorker-72:
-Process PoolWorker-83:
-Process PoolWorker-85:
-</pre>
-</div>
 </div>
 
 </div>
@@ -16687,15 +16656,6 @@ Elapsed time:
 <div class="prompt"></div>
 
 
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Process PoolWorker-163:
-Process PoolWorker-168:
-Traceback (most recent call last):
-Traceback (most recent call last):
-  File &#34;/usr/lib64/python2.7/multiprocessing/process.py&#34;, line 258, in _bootstrap
-Process PoolWorker-129:
-</pre>
-</div>
 </div>
 
 </div>
@@ -16823,6 +16783,7 @@ Process PoolWorker-129:
     <span class="n">eta</span> <span class="o">=</span> <span class="mf">0.1</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> 
                  <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">eta</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">):</span>
+        <span class="c1"># Use a classifier tree as the initial F</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span> <span class="o">=</span> <span class="n">num_classes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_depth</span> <span class="o">=</span> <span class="n">max_depth</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">=</span> <span class="n">eta</span>
@@ -16840,13 +16801,23 @@ Process PoolWorker-129:
         <span class="n">trees</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_classes</span><span class="p">):</span>
             <span class="n">tree_res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_res</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+            <span class="c1"># Add small trees regression trees per class</span>
             <span class="n">curr_tree</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_depth</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
             <span class="n">curr_tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_images</span><span class="p">,</span> <span class="n">tree_res</span><span class="p">)</span>
             <span class="n">tree_prob</span> <span class="o">=</span> <span class="n">curr_tree</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_images</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">curr_prob</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">curr_prob</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="o">*</span><span class="n">tree_prob</span>
             <span class="n">trees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_tree</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">forest</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
-            
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">niters</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niters</span><span class="p">):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s2">&quot;Training Accuracy: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_acc</span><span class="p">())</span>                
+            <span class="bp">self</span><span class="o">.</span><span class="n">fit_once</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">train_acc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">train_labels</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_labels</span><span class="p">)))</span>
+    
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_images</span><span class="p">):</span>
         <span class="n">test_prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">test_images</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">trees</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">forest</span><span class="p">:</span>
@@ -16855,15 +16826,6 @@ Process PoolWorker-129:
                 <span class="n">tree_prob</span> <span class="o">=</span> <span class="n">curr_tree</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_images</span><span class="p">)</span>
                 <span class="n">test_prob</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_prob</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eta</span><span class="o">*</span><span class="n">tree_prob</span>
         <span class="k">return</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">test_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-    
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">niters</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="bp">True</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">niters</span><span class="p">):</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
-                <span class="k">print</span> <span class="s2">&quot;Training Accuracy: {0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_acc</span><span class="p">())</span>                
-            <span class="bp">self</span><span class="o">.</span><span class="n">fit_once</span><span class="p">()</span>
-    
-    <span class="k">def</span> <span class="nf">train_acc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">curr_prob</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">train_labels</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_labels</span><span class="p">)))</span>
 </pre></div>
 
 </div>
