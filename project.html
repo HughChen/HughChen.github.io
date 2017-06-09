@@ -11808,7 +11808,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
@@ -11831,10 +11831,10 @@ div#notebook {
 
 
 
-<div id="b62b90e3-2374-4e73-b5b2-1cf354a9e38b"></div>
+<div id="38736c83-318f-4f8c-9930-12e7cd014b6e"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#b62b90e3-2374-4e73-b5b2-1cf354a9e38b');
+var element = $('#38736c83-318f-4f8c-9930-12e7cd014b6e');
 $.getScript('https://kmahelona.github.io/ipython_notebook_goodies/ipython_notebook_toc.js')
 </script>
 </div>
@@ -14148,7 +14148,7 @@ wI+BP4qIPaNRxm7j29jNzCrEFyLNzCrEQdvMrEIctM3MKsRB28ysQhy0zcwqxEHbzKxCHLTNzCrk
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Preprocessing-Code">Preprocessing Code<a class="anchor-link" href="#Preprocessing-Code">&#194;&#182;</a></h4><p>Preprocessing the data using the two features above (flattened 32 by 32 image and then flattened 3D histogram of colors) and saving it as a npy file helps save time, since we're likely to keep using the same data over and over again.  Processing it each time is inefficient.</p>
+<h4 id="Code---Preprocessing">Code - Preprocessing<a class="anchor-link" href="#Code---Preprocessing">&#194;&#182;</a></h4><p>Preprocessing the data using the two features above (flattened 32 by 32 image and then flattened 3D histogram of colors) and saving it as a npy file helps save time, since we're likely to keep using the same data over and over again.  Processing it each time is inefficient.</p>
 <p>Note that it is often very important to either normalize or standardize the data.  Otherwise the methods below may place uneven emphasis on particular features, which isn't necessarily what you want.</p>
 
 </div>
@@ -16164,7 +16164,7 @@ AEREGvUH3pOEVoh4Io8AAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Code">Code<a class="anchor-link" href="#Code">&#194;&#182;</a></h3>
+<h3 id="Code---Nearest-Neighbor">Code - Nearest Neighbor<a class="anchor-link" href="#Code---Nearest-Neighbor">&#194;&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -16768,7 +16768,16 @@ Process PoolWorker-129:
 <li>Repeat steps 2-4 until convergence.</li>
 </ol>
 <p>Then only subtlety is that for classification, we have to compute that gradients for each class.  This set of <a href="http://www.ccs.neu.edu/home/vip/teach/MLcourse/4_boosting/slides/gradient_boosting.pdf">slides</a> describes this point quite well.</p>
+<p>Below, I report the results for using the digits dataset.  Since this is a simple version of gradient boosting trees, I only try it out on the simple digits dataset.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code---Gradient-Boosting">Code - Gradient Boosting<a class="anchor-link" href="#Code---Gradient-Boosting">&#194;&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -17083,7 +17092,7 @@ Training Accuracy: 0.714232804233
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Code">Code<a class="anchor-link" href="#Code">&#194;&#182;</a></h3>
+<h3 id="Code---Neural-Network">Code - Neural Network<a class="anchor-link" href="#Code---Neural-Network">&#194;&#182;</a></h3>
 </div>
 </div>
 </div>
