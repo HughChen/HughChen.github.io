@@ -1,23 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
 <head>
-<style>  
-    div.padded {  
-      padding-top: 0px;  
-      padding-right: 100px;  
-      padding-bottom: 0.25in;  
-      padding-left: 100px;  
-    }  
-  </style> 
-<title>Hugh Chen  |  CS 184</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://hughchen.github.io/style.css">
 </head>
+<html>
 <body>
-<br />
-<h1 align="middle">Final Project: Final Report</h1>
-    <h2 align="middle">Hugh Chen</h2>
-    <div class="padded">
+
+<p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<strong><a href="http://hughchen.github.io/index.html" style="color: Black">Hugh Chen</a></strong>~~~~~~~~~~~~</p>
 
     <h2 align="middle">Abstract</h2>
     <p>For this project, I implemented three algorithms.  Two for mesh simplification and one for mesh regularization.</p>
@@ -35,7 +23,7 @@
     <p>Implementing edge collapse for the halfedge mesh data structure was primarily a matter of reassigning pointers to achieve the following local change:</p>
 
     <div align="middle">
-      <img src="edge_collapse.png" width="600px" />
+      <img src="edge_collapse.png" width="450px" />
     </div>
 
     <p>There were two methods to accomplish this: creating a new vertex <code>v_m</code> or reassigning one of the prexisting to be <code>v_m</code>.  In order to minimize the amount of pointer I would have to reassign, I chose to do the latter.  I reassigned the remaining vertices keeping in mind that I would ultimately delete the following vertices, edges, faces, and halfedges:</p>
@@ -128,15 +116,15 @@
 
     <div align="middle">
       <div style="float:left; width:100 px">
-        <img src="simp1/cow1.png" width="350px" />
+        <img src="simp1/cow1.png" width="400px" />
         <figcaption align="middle">Cow screenshot - no downsampling.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp1/cow2.png" width="350px" />
+        <img src="simp1/cow2.png" width="400px" />
         <figcaption align="middle">Cow screenshot - downsampled once.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp1/cow3.png" width="350px" />
+        <img src="simp1/cow3.png" width="400px" />
         <figcaption align="middle">Cow screenshot - downsampled twice.</figcaption>
       </div>
 
@@ -145,15 +133,15 @@
 
     <div align="middle">
       <div style="float:left; width:100 px">
-        <img src="simp1/teapot1.png" width="350px" />
+        <img src="simp1/teapot1.png" width="400px" />
         <figcaption align="middle">Teapot screenshot - no downsampling.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp1/teapot2.png" width="350px" />
+        <img src="simp1/teapot2.png" width="400px" />
         <figcaption align="middle">Teapot screenshot - downsampled once.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp1/teapot3.png" width="350px" />
+        <img src="simp1/teapot3.png" width="400px" />
         <figcaption align="middle">Teapot screenshot - downsampled twice.</figcaption>
       </div>
       <div style="clear:both"></div>
@@ -163,15 +151,15 @@
 
     <div align="middle">
       <div style="float:left; width:100 px">
-        <img src="simp2/cow1.png" width="350px" />
+        <img src="simp2/cow1.png" width="400px" />
         <figcaption align="middle">Cow screenshot - no downsampling.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp2/cow2.png" width="350px" />
+        <img src="simp2/cow2.png" width="400px" />
         <figcaption align="middle">Cow screenshot - downsampled once.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp2/cow3.png" width="350px" />
+        <img src="simp2/cow3.png" width="400px" />
         <figcaption align="middle">Cow screenshot - downsampled twice.</figcaption>
       </div>
 
@@ -180,15 +168,15 @@
 
     <div align="middle">
       <div style="float:left; width:100 px">
-        <img src="simp2/teapot1.png" width="350px" />
+        <img src="simp2/teapot1.png" width="400px" />
         <figcaption align="middle">Teapot screenshot - no downsampling.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp2/teapot2.png" width="350px" />
+        <img src="simp2/teapot2.png" width="400px" />
         <figcaption align="middle">Teapot screenshot - downsampled once.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="simp2/teapot3.png" width="350px" />
+        <img src="simp2/teapot3.png" width="400px" />
         <figcaption align="middle">Teapot screenshot - downsampled twice.</figcaption>
       </div>
       <div style="clear:both"></div>
@@ -198,11 +186,11 @@
 
     <div align="middle">
       <div style="float:left; width:100 px">
-        <img src="remesh/bean1.png" width="450px" />
+        <img src="remesh/bean1.png" width="400px" />
         <figcaption align="middle">Bean screenshot - no regularization.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="remesh/bean2.png" width="450px" />
+        <img src="remesh/bean2.png" width="400px" />
         <figcaption align="middle">Bean screenshot - regularized.</figcaption>
       </div>
       <div style="clear:both"></div>
@@ -210,11 +198,11 @@
 
     <div align="middle">
       <div style="float:left; width:100 px">
-        <img src="remesh/cow1.png" width="450px" />
+        <img src="remesh/cow1.png" width="400px" />
         <figcaption align="middle">Cow screenshot - no regularization.</figcaption>
       </div>
       <div style="float:left; width:100 px">
-        <img src="remesh/cow2.png" width="450px" />
+        <img src="remesh/cow2.png" width="400px" />
         <figcaption align="middle">Cow screenshot - regularized.</figcaption>
       </div>
       <div style="clear:both"></div>
@@ -233,7 +221,6 @@
 
     <p>Solo project.</p>
 
-</div>
 </body>
 </html>
 
