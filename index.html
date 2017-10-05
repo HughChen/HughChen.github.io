@@ -8,13 +8,22 @@
 #research {
     width: 100%;
 }
+#research2016 {
+    width: 100%;
+}
 #misc {
     width: 100%;
 }
-#classes {
+#misc2017 {
     width: 100%;
 }
-#research {
+#misc2016 {
+    width: 100%;
+}
+#misc2015 {
+    width: 100%;
+}
+#classes {
     width: 100%;
 }
 </style>
@@ -46,19 +55,23 @@
 
 <p><a onclick="hideshow('research')"><strong>Projects (Research)</strong></a></p>
 
-<div id="research", style="display: none;">
+<div id="research">
 
-<p><strong>2016</strong></p>
+<p><a onclick="hideshow('research2016')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2016~~~~~~~~~~~~~~~~~~</strong></a></p>
+
+<div id="research2016", style="display: none;">
 
 <p>Hugh Chen, Yusuf B. Erol, Eric Shen, Stuart Russell, "<i>Probabilistic Model-Based Approach for Heart Beat Detection</i>", Physiological Measurement, Vol. 37, No. 9, August 2016. <a href="http://iopscience.iop.org/article/10.1088/0967-3334/37/9/1404/pdf">Paper</a>.  <a href="https://github.com/HughChen/PFDBNHBD"</a>Code</a>.</p> 
 
 </div>
 
+</div>
+
 <p><a onclick="hideshow('misc')"><strong>Projects (Misc)</strong></a></p>
+<div id="misc">
 
-<div id="misc", style="display: none;">
-
-<p><strong>2017</strong></p>
+<p><a onclick="hideshow('misc2017')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2017~~~~~~~~~~~~~~~~~~</strong></a></p>
+<div id="misc2017", style="display: none;">
 
 <p>Hugh Chen, "<i>Implementation of Nonparametric Methods</i>", May 2017.  Tutorial that implements neural networks and KNN from scratch.  Additionally implements gradient boosting trees using only sklearn's decision trees.  <a href="html/stat527/project.html">Tutorial</a>.</p> 
 
@@ -66,7 +79,10 @@
 
 <p>Hugh Chen, Tianqi Zhang, Yao Xiao, "<i>Influential Factors for Gross Profit in Film</i>", March 2017.  Analyzes rotten tomato and imdb data.  Exercise in web scraping, dealing with genre factors, censored data, and linear regression. <a href="https://github.com/HughChen/movie_analysis/blob/master/poster.pdf">Poster</a>.  <a href="https://github.com/HughChen/movie_analysis"</a>Code</a>.</p>
 
-<p><strong>2016</strong></p>
+</div>
+
+<p><a onclick="hideshow('misc2016')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2016~~~~~~~~~~~~~~~~~~</strong></a></p>
+<div id="misc2016", style="display: none;">
 
 <p>Hugh Chen, Yiwen Song, "<i>MAX-SAT Algorithms Survey</i>", May 2016.  Brief discussion of a few MAX-SAT algorithms.  Overall, a fun exploration of approaches for an NP-Hard problem.  <a href="files/270_final_writeup.pdf">Survey</a>.  <a href="https://github.com/HughChen/270-MAXSAT"</a>Code</a>.</p>  
 
@@ -79,9 +95,14 @@
 
 <p>Hugh Chen.  "<i>Computer Graphics Project</i>", Spring 2016.  Covers <a href="html/cs184/asst1/index.html">rasterization, texture mapping</a>, <a href="html/cs184/asst2/index.html">geometry for meshes, shading</a>, <a href="html/cs184/asst3/index.html">ray tracing, illumination</a>, and <a href="html/cs184/asst4/index.html">cameras (ray tracing and autofocus)</a>.  <a href="html/cs184/index.html">Writeup</a>.</p> 
 
-<p><strong>2015 (and earlier)</strong></p>
+</div>
+
+<p><a onclick="hideshow('misc2015')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2015 (and earlier)~~~~</strong></a></p>
+<div id="misc2015", style="display: none;">
 
 <p>Hugh Chen.  "<i>Graduation</i>", May 2012.  Short film I made in High School.  <a href="https://vimeo.com/214571336">Video</a>.</p>
+
+</div>
 
 </div>
 
