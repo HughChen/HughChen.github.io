@@ -26,9 +26,6 @@
 #misc2015 {
     width: 100%;
 }
-#experience {
-    width: 100%;
-}
 #classes {
     width: 100%;
 }
@@ -39,12 +36,12 @@
 
 <p>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<strong>Hugh Chen</strong>~~~~~~~~~~~~~</p>
 
-<p><a onclick="hideshow('about')"><strong>About Me (hide/show)</strong></a></p>
+<p><a onclick="hideshow('about')"><strong>About Me</strong></a></p>
 
 <div id="about">
 
 <p>
-2nd year M.S. student studying Statistics at University of Washington. Graduated from University of California, Berkeley with High Distinction in Computer Science.
+2nd year M.S. student studying Statistics at University of Washington. Graduated from University of California, Berkeley with a B.A. in Computer Science.
 </p>  
 
 <p>Currently doing research related to Computational Health/Biology as a part of <a href="http://suinlee.cs.washington.edu/home">Professor Su-In Lee's Lab</a>. I'm interested in machine learning as well as probabilistic modelling for high-impact societal applications.</p>
@@ -53,36 +50,36 @@
   <img src="img/Hugh.png" style="border: #000000 2px outset" width="150px" />
 </div>
 
-<p><i>Hobbies:</i> I used to breakdance and hope to get back into it.  I like video games, reading, and love listening to music.</p>
-
 <p><i>Contact:</i> hugh.chen1(at)gmail.com</p>
+
+<p>Click the headers to hide/show sections</p>
 
 </div>
 
-<p><a onclick="hideshow('research')"><strong>Projects - Research (hide/show)</strong></a></p>
+<p><a onclick="hideshow('research')"><strong>Projects (Research)</strong></a></p>
 
 <div id="research">
 
 <p><a onclick="hideshow('research2017')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2017~~~~~~~~~~~~~~~~~~</strong></a></p>
 
-<div id="research2017">
+<div id="research2017", style="display: none;">
 <p>
-Hugh Chen, Scott Lundberg, Su-In Lee. "<i>Checkpoint Ensembles: Ensemble Methods from a Single Training Process</i>".  Submitted to AAAI.
+Hugh Chen, Scott Lundberg, Su-In Lee. "<i>Checkpoint Ensembles: Ensemble Methods from a Single Training Process</i>".
 </p>
 </div>
 
 <p><a onclick="hideshow('research2016')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2016~~~~~~~~~~~~~~~~~~</strong></a></p>
 
-<div id="research2016">
+<div id="research2016", style="display: none;">
 
-<p>Hugh Chen, Yusuf B. Erol, Eric Shen, Stuart Russell, "<i>Probabilistic Model-Based Approach for Heart Beat Detection</i>", Physiological Measurement, Vol. 37, No. 9, August 2016. <a href="http://iopscience.iop.org/article/10.1088/0967-3334/37/9/1404">Paper</a>.  <a href="https://github.com/HughChen/PFDBNHBD"</a>Code</a>.</p> 
-
-</div>
+<p>Hugh Chen, Yusuf B. Erol, Eric Shen, Stuart Russell, "<i>Probabilistic Model-Based Approach for Heart Beat Detection</i>", Physiological Measurement, Vol. 37, No. 9, August 2016. <a href="http://iopscience.iop.org/article/10.1088/0967-3334/37/9/1404/pdf">Paper</a>.  <a href="https://github.com/HughChen/PFDBNHBD"</a>Code</a>.</p> 
 
 </div>
 
-<p><a onclick="hideshow('misc')"><strong>Projects - Misc (hide/show)</strong></a></p>
-<div id="misc", style="display: none;">
+</div>
+
+<p><a onclick="hideshow('misc')"><strong>Projects (Misc)</strong></a></p>
+<div id="misc">
 
 <p><a onclick="hideshow('misc2017')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2017~~~~~~~~~~~~~~~~~~</strong></a></p>
 <div id="misc2017", style="display: none;">
@@ -117,28 +114,10 @@ Hugh Chen, Scott Lundberg, Su-In Lee. "<i>Checkpoint Ensembles: Ensemble Methods
 <p>Hugh Chen.  "<i>Graduation</i>", May 2012.  Short film I made in High School.  <a href="https://vimeo.com/214571336">Video</a>.</p>
 
 </div>
-</div>
-
-
-<p><a onclick="hideshow('experience')"><strong>Experience (hide/show)</strong></a></p>
-
-<div id="experience", style="display: none;">
-
-<p><i>Research Assistant</i>. UW - Lee Lab (Dr. Su-In Lee). Fall 2016 - Ongoing. <br /> Working on deep learning for health applications as well as a couple of genomics projects.</p>
-
-<p><i>Research Assistant</i>. UCB - RUGS (Dr. Stuart Russell). Spring 2015 - Spring 2016. <br /> Worked on probabilistic modeling techniques (dynamic bayesian network) and state estimation (particle filter, Rao-Blackwellized particle filter) on health applications.</p>
-
-<p><i>President, Vice President, Publicity Chair</i>. UPE. Fall 2014 - Fall 2015. <br />UCB Computer Science Honors Society. Guided peers in organizing company info sessions, organizing tutoring/practice interviews, and setting up hackathons and a variety of other events.</p>
-
-<p><i>Undergraduate Student Instructor</i>. UCB - CS70. Spring 2015.  <br />Taught two weekly one hour discussion sections, generated hw/exam problems, office hours for Berkeley's Discrete Math and Probability course.</p>
-
-<p><i>Software Engineering Intern</i>. Location Labs. Summer 2014.  <br />Backend development (Restful Web API) for a mobile development company in the Bay area.</p>
-
-<p><i>Volunteer Research Intern</i>. UofA - AI Lab (Dr. Hsinchun Chen). Summer 2013.  <br />Spidering/parsing international hacker forums.</p>
 
 </div>
 
-<p><a onclick="hideshow('classes')"><strong>Classes I've enjoyed (hide/show)</strong></a></p>
+<p><a onclick="hideshow('classes')"><strong>Classes I've enjoyed</strong></a></p>
 
 <div id="classes", style="display: none;">
 
@@ -153,7 +132,7 @@ Hugh Chen, Scott Lundberg, Su-In Lee. "<i>Checkpoint Ensembles: Ensemble Methods
 
 </div>
 
-<p><a onclick="hideshow('artists')"><strong>Favorite artists (hide/show)</strong></a></p>
+<p><a onclick="hideshow('artists')"><strong>Favorite artists</strong></a></p>
 
 <div id="artists", style="display: none;">
 
