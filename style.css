@@ -1,7 +1,8 @@
 body {
     font: normal 14px monospace;
-    width: 450px; 
+    width: 500px; 
     hyphens: auto;
+    margin:0 auto;
 }
 
 a:link {
