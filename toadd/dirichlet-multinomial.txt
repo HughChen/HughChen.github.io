@@ -1,0 +1,2 @@
+add the expected value and variance of dirichlet multinomial
+570 hw4p3

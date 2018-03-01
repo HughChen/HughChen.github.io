@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<style>
+#about {
+    width: 100%;
+}
+#research {
+    width: 100%;
+}
+#research2017 {
+    width: 100%;
+}
+#research2016 {
+    width: 100%;
+}
+#misc {
+    width: 100%;
+}
+#honors {
+    width: 100%;
+}
+#misc2017 {
+    width: 100%;
+}
+#misc2016 {
+    width: 100%;
+}
+#misc2015 {
+    width: 100%;
+}
+#experience {
+    width: 100%;
+}
+#classes {
+    width: 100%;
+}
+</style>
+</head>
+<html>
+<body>
+
+<p>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Hugh~Chen~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~<a href="http://hughchen.github.io/index.html" style="color: Black">About</a>~~~~~~~<a href="http://hughchen.github.io/projects.html" style="color: Black"><strong>Projects</strong></a>~~~~~~~<a href="http://hughchen.github.io/honors.html" style="color: Black">Honors</a>~~~~~~~<a href="http://hughchen.github.io/misc.html" style="color: Black">Misc</a>~~~~~~~
+</p>
+
+<p><a onclick="hideshow('research')"><strong>Projects - Research (hide/show)</strong></a></p>
+
+<div id="research">
+
+<p><a onclick="hideshow('research2017')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2017~~~~~~~~~~~~~~~~~~</strong></a></p>
+
+<div id="research2017">
+
+<p>
+&#9716 Gabriel Erion, Hugh Chen, Scott Lundberg and Su-In Lee,"Anesthesiologist-level forecasting of hypoxemia with only SpO2 data using deep learning", <a href="https://arxiv.org/abs/1712.00563">Workshop paper</a>. NIPS ML4H.
+</p>
+
+<p>
+&#9716 Hugh Chen, Scott Lundberg, Su-In Lee,"Hybrid Gradient Boosting Trees and Neural Networks for Forecasting Operating Room Data", <a href="https://arxiv.org/abs/1801.07384">Workshop paper</a>. NIPS ML4H.
+</p>
+
+<p>
+&#9716 Hugh Chen, Scott Lundberg, Su-In Lee. "<i>Checkpoint Ensembles: Ensemble Methods from a Single Training Process</i>".  Under Preparation. <a href="https://arxiv.org/abs/1710.03282">Paper</a>.
+</p>
+</div>
+
+<p><a onclick="hideshow('research2016')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2016~~~~~~~~~~~~~~~~~~</strong></a></p>
+
+<div id="research2016">
+
+<p>&#9716 Hugh Chen, Yusuf B. Erol, Eric Shen, Stuart Russell, "<i>Probabilistic Model-Based Approach for Heart Beat Detection</i>", Physiological Measurement, Vol. 37, No. 9, August 2016. <a href="http://iopscience.iop.org/article/10.1088/0967-3334/37/9/1404">Paper</a>.  <a href="https://github.com/HughChen/PFDBNHBD"</a>Code</a>.</p> 
+
+</div>
+
+<p><a onclick="hideshow('misc')"><strong>Projects - Misc (hide/show)</strong></a></p>
+<!-- <div id="misc", style="display: none;"> -->
+<div id="misc">
+<!-- 
+<p><a onclick="hideshow('misc2017')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2017~~~~~~~~~~~~~~~~~~</strong></a></p>
+<div id="misc2017"> -->
+
+<p>&#9716 "<i>Investigation/Implementation of Stochastic Gradient Descent Variants</i>".  I investigate and implement different methodologies for stochastic gradient descent.  <a href="files/sgd_investigation.pdf">Paper</a>.</p> 
+
+<p>&#9716 "<i>Implementation of Nonparametric Methods</i>".  Tutorial that implements neural networks and KNN from scratch.  Additionally implements gradient boosting trees using only sklearn's decision trees.  <a href="html/stat527/project.html">Tutorial</a>.</p> 
+
+<p>&#9716 "<i>Li and Stephens Model Paper Summary</i>". Explanation of the Li and Stephens model, which has applications in many parts of genetics (haplotype phasing, linkage disequilibrium, recombination rates, etc.).  <a href="files/stat550_final_project.pdf">Explanation</a>.</p>
+
+<p>&#9716 "<i>Influential Factors for Gross Profit in Film</i>".  Analyzes rotten tomato and imdb data.  Exercise in web scraping, dealing with genre factors, censored data, and linear regression. <a href="https://github.com/HughChen/movie_analysis/blob/master/poster.pdf">Poster</a>.  <a href="https://github.com/HughChen/movie_analysis"</a>Code</a>.</p>
+<!-- 
+</div> -->
+
+<!-- <p><a onclick="hideshow('misc2016')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2016~~~~~~~~~~~~~~~~~~</strong></a></p>
+<div id="misc2016", style="display: none;">
+ -->
+<p>&#9716 "<i>MAX-SAT Algorithms Survey</i>".  Brief discussion of a few MAX-SAT algorithms - fun exploration of approaches for an NP-Hard problem.  <a href="files/270_final_writeup.pdf">Survey</a>.  <a href="https://github.com/HughChen/270-MAXSAT"</a>Code</a>.</p>  
+
+<p>&#9716 "<i>Recursive Trees</i>".  Uses recursion, linear algebra, probability, and trigonometry just to draw trees.  <a href="html/cs184/extra_credit.html">Tutorial</a>. <a href="html/cs184/gen.py">Code</a>.</p>
+
+<div align="middle">
+  <img src="html/cs184/asst1/images/part8/competition.png" width="400px" />
+  <figcaption>Stochastic tree.</figcaption>
+</div>
+
+<p>&#9716 "<i>Computer Graphics Project</i>" Covers <a href="html/cs184/asst1/index.html">rasterization, texture mapping</a>, <a href="html/cs184/asst2/index.html">geometry for meshes, shading</a>, <a href="html/cs184/asst3/index.html">ray tracing, illumination</a>, and <a href="html/cs184/asst4/index.html">cameras (ray tracing and autofocus)</a>.  <a href="html/cs184/index.html">Writeup</a>.</p> 
+
+<!-- </div>
+ -->
+<!-- <p><a onclick="hideshow('misc2015')"><strong>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2015 (and earlier)~~~~</strong></a></p>
+<div id="misc2015", style="display: none;">
+ -->
+<p>&#9716 "<i>Graduation</i>".  Short film I made in High School.  <a href="https://vimeo.com/214571336">Video</a>.</p>
+
+<!-- </div> -->
+</div>
+
+
+<script>
+function hideshow(type) {
+    var x = document.getElementById(type);
+    if (x.style.display === 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</script>
+
+</body>
+</html>
