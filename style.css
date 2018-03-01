@@ -23,7 +23,3 @@ a:hover {
 a:active {
     color: DarkTurquoise;
 }
-
-a.nounderline {
-	text-decoration: none; color: black;
-}
