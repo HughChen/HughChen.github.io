@@ -1,127 +1,58 @@
 <!DOCTYPE html>
-<head>
-<link rel="stylesheet" type="text/css" href="http://hughchen.github.io/style.css">
-<style>
-#about {
-    width: 100%;
-}
-#research {
-    width: 100%;
-}
-#research2017 {
-    width: 100%;
-}
-#research2016 {
-    width: 100%;
-}
-#misc {
-    width: 100%;
-}
-#honors {
-    width: 100%;
-}
-#misc2017 {
-    width: 100%;
-}
-#misc2016 {
-    width: 100%;
-}
-#misc2015 {
-    width: 100%;
-}
-#experience {
-    width: 100%;
-}
-#classes {
-    width: 100%;
-}
-.shift{
-    margin-left:15px;
-}
-.shift2{
-    margin-left:30px;
-}
-a.nounderline {text-decoration: none; color: black;}
-ul { margin: 0; padding: 0; }
-</style>
-</head>
 <html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f1f1f1;
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            margin-left: 20px;
+        }
+
+        .logo {
+            width: 48px;
+            height: auto;
+            margin-bottom: 10px;
+            object-fit: contain;
+            fill: purple;
+        }
+    </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <body>
-
-<p>
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Hugh~Chen~~~~~~~~~~~~
-
-~~~~<a href="http://hughchen.github.io/index.html" class="nounderline">~~~~~~~~~~~</a>~<a href="http://hughchen.github.io/projects.html" class="nounderline">~~~~~~~~~~~~~~</a>~<a href="http://hughchen.github.io/honors.html" class="nounderline">~~~~~~~~~~~~</a>~<a href="http://hughchen.github.io/misc.html" class="nounderline">~~~~~~~~~~</a>~~~~
-
-~~~~<a href="http://hughchen.github.io/index.html" class="nounderline">~~~</a><a href="http://hughchen.github.io/index.html" class="nounderline"><strong>About</strong></a><a href="http://hughchen.github.io/index.html" class="nounderline">~~~</a>~<a href="http://hughchen.github.io/projects.html" class="nounderline">~~~</a><a href="http://hughchen.github.io/projects.html" class="nounderline">Research</a><a href="http://hughchen.github.io/projects.html" class="nounderline">~~~</a>~<a href="http://hughchen.github.io/honors.html" class="nounderline">~~~</a><a href="http://hughchen.github.io/honors.html" class="nounderline">Honors</a><a href="http://hughchen.github.io/honors.html" class="nounderline">~~~</a>~<a href="http://hughchen.github.io/misc.html" class="nounderline">~~~</a><a href="http://hughchen.github.io/misc.html" class="nounderline">Misc</a><a href="http://hughchen.github.io/misc.html" class="nounderline">~~~</a>~~~~
-</p>
-
-<div id="about">
-
-<p style="float: right;"><img src="img/Hugh.png" style="border: #000000 2px outset" width="150px"/></p>
-
-<p><strong>Experience</strong></p>
-<ul>
-<li class="shift">PhD, Computer Science</li>
-<li class="shift2">University of Washington</li>
-<li class="shift2">Expected graduation Fall 2022</li>
-<li class="shift">MS, Statistics</li>
-<li class="shift2">University of Washington 2018</li>
-<li class="shift">BA, Computer Science</li>
-<li class="shift2">UC Berkeley 2016</li>
-</ul>
-
-<p><strong>About me</strong></p>
-
-<p>My work focuses on explaining machine learning models, typically based on connections to Shapley value feature attributions.  I have also worked on machine learning for healthcare applications in surgical and epidemiological domains.</p>
-
-<p><a href="https://hughchen.github.io/its_blog/index.html">Interactive article</a> describing a popular algorithm I created and incorporated to the widely used SHAP github (15.6k stars) repository.</p>
-
-<!-- <div align="middle">
-  <img src="img/Hugh.png" style="border: #000000 2px outset" width="150px" />
-</div> -->
-
-<!-- <p>&#9716 <i>Hobbies:</i> I used to breakdance and hope to get back into it.  I like video games, reading, and love listening to music.</p> -->
-
-<p><strong>Contact</strong></p>
-
-<ul>
-<li class="shift"><i>Email:</i> hugh.chen1(at)gmail.com</li>
-<li class="shift"><a href="files/cv.pdf"><i>Curriculum Vitae</i></a></li>
-<li class="shift"><a href="https://scholar.google.com/citations?user=bIzb0D8AAAAJ&hl=en">Google Scholar</i></a></li>
-</ul>
-
-<p><strong>Hobbies</strong></p>
-
-<p>I recently rediscovered my love for small programming projects.  A few fun ones include:</p>
-<ul>
-<li class="shift">
-<a href="https://www.youtube.com/watch?v=hA4TKV2Lbx8">Web app to turn images into readable QR codes</a>
-</li>
-
-<li class="shift">
-<a href="https://www.youtube.com/watch?v=QMOScALQHg4">CycleGANs to convert corgis into golden retrievers</a>
-</li>
-
-<li class="shift">
-<a href="https://www.youtube.com/watch?v=R-9xg5X16n0">Procedurally generated spiral trees</a>
-</li>
-</ul>
-
-<br>
-
-</div>
-
-<script>
-function hideshow(type) {
-    var x = document.getElementById(type);
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-}
-</script>
-
+    <div class="profile-container">
+        <img src="img/Hugh.png" alt="Profile Image" class="profile-image">
+        <div class="logo-container">
+            <a href="https://www.linkedin.com/in/hugh-chen-8777a28a/"><img src="img/icons8-linkedin.svg" alt="Youtube" class="logo"></a>
+            <a href="https://scholar.google.com/citations?user=bIzb0D8AAAAJ&hl=en"><img src="img/icons8-google-scholar.svg" alt="Google Scholar" class="logo"></a>
+            <a href="https://github.com/HughChen"><img src="img/icons8-github.svg" alt="Youtube" class="logo"></a>
+            <a href="https://www.youtube.com/channel/UC3ig2OmCHDQIAjbU_WUVnDwg"><img src="img/icons8-youtube.svg" alt="Youtube" class="logo"></a>
+        </div>
+    </div>
 </body>
 </html>
